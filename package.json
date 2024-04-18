@@ -1,0 +1,23 @@
+{
+  "name": "finai",
+  "version": "2.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run prepare && concurrently \"npm run start:server\" \"npm run start:client\"",
+    "start:server": "cd server && npm start",
+    "start:client": "cd client && npm run dev",
+    "prepare": "concurrently \"npm run prepare:server\" \"npm run prepare:client\"",
+    "prepare:server": "cd server && npm install",
+    "prepare:client": "cd client && npm install",
+    "build": "npm run prepare && concurrently \"npm run build:server\" \"npm run build:client\"",
+    "build:server": "cd server && npm run build",
+    "build:client": "cd client && npm run build",
+    "test": "npm run prepare && concurrently \"npm run test:client\" \"npm run test:server\"",
+    "test:client": "cd client && npm test",
+    "test:server": "cd server && npm test"
+  },
+  "license": "Apache 2.0",
+  "devDependencies": {
+    "concurrently": "^7.1.0"
+  }
+}
