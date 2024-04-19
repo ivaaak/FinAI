@@ -1,53 +1,34 @@
+import * as dotenv from "dotenv";
+import express from "express";
+import routes from "./src/routes/routes";
 import cors from "cors";
-import "dotenv/config";
-import express, { Express, Request, Response } from "express";
-import chatRouter from "./src/routes/chat.route";
+import { connectToDatabase } from "./src/data/database";
 
-const app: Express = express();
-const port = 9000;
+// Load environment variables from the .env file, where the ATLAS_URI is configured
+dotenv.config();
+const { ATLAS_URI } = process.env;
 
-const env = process.env["NODE_ENV"];
-const isDevelopment = !env || env === "development";
-const prodCorsOrigin = process.env["PROD_CORS_ORIGIN"]
-
-if (isDevelopment) {
-  console.warn("Running in development mode - allowing CORS for all origins");
-  app.use(cors());
-} else if (prodCorsOrigin) {
-  console.log(`Running in production mode - allowing CORS for domain: ${prodCorsOrigin}`);
-  const corsOptions = {
-    origin: prodCorsOrigin, // Restrict to production domain
-  };
-  app.use(cors(corsOptions));
-} else {
-  console.warn("Production CORS origin not set, defaulting to no CORS.");
+if (!ATLAS_URI) {
+  console.error(
+    "No ATLAS_URI environment variable has been defined in config.env"
+  );
+  process.exit(1);
 }
 
-app.use(express.text());
+const app = express();
+const port = 9000;
 
-app.get("/", (req: Request, res: Response) => {
-  res.send("LlamaIndex Express Server");
-});
 
-app.use("/api/chat", chatRouter);
+async function startServer() {
+  await connectToDatabase(ATLAS_URI!); // Connect to the database
+  // Use the routes module
+  app.use(cors());
+  app.use(express.json()); // For parsing application/json
+  app.use('/api', routes); // Prefix all routes with '/api'
 
-const server = app.listen(port, () => {
-  console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
- });
- 
- // Handle process signals
- process.on('SIGINT', () => {
-  console.log('SIGINT signal received.');
-  server.close(() => {
-     console.log('Server closed.');
-     process.exit(0);
+  app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
   });
- });
- 
- process.on('SIGTERM', () => {
-  console.log('SIGTERM signal received.');
-  server.close(() => {
-     console.log('Server closed.');
-     process.exit(0);
-  });
- });
+}
+
+startServer().catch((error) => console.error(error));

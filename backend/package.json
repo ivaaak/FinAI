@@ -15,7 +15,8 @@
     "dotenv": "^16.3.1",
     "esbuild": "^0.20.2",
     "express": "^4",
-    "llamaindex": "0.0.35"
+    "mongodb": "^6.5.0",
+    "node-llama-cpp": "^2.8.9"
   },
   "devDependencies": {
     "@types/cors": "^2.8.16",

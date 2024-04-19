@@ -20,165 +20,149 @@ var __async = (__this, __arguments, generator) => {
 };
 
 // index.ts
-import cors from "cors";
-import "dotenv/config";
+import * as dotenv from "dotenv";
+import express4 from "express";
+
+// src/routes/routes.ts
+import express3 from "express";
+
+// src/controllers/llamaService.ts
+import express from "express";
+import path from "path";
+import { LlamaModel, LlamaContext, LlamaChatSession } from "node-llama-cpp";
+var llamaService = express.Router();
+var modelPath = path.join(process.cwd(), "models", "codellama-13b.Q3_K_M.gguf");
+var model = new LlamaModel({
+  modelPath
+});
+var context = new LlamaContext({ model });
+var session = new LlamaChatSession({ context });
+llamaService.post("/", (req, res) => __async(void 0, null, function* () {
+  console.log("llamaService / POST /api/llm/ called");
+  const userMessage = req.body.message;
+  console.log("User: " + userMessage);
+  try {
+    const aiResponse = yield session.prompt(userMessage);
+    console.log("AI: " + aiResponse);
+    res.json({ response: aiResponse });
+  } catch (error) {
+    console.error("Error processing chat:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+}));
+var llamaService_default = llamaService;
+
+// src/controllers/employeeService.ts
 import express2 from "express";
 
-// src/routes/chat.route.ts
-import express from "express";
-
-// src/controllers/chat.controller.ts
-import { streamToResponse } from "ai";
-import { OpenAI } from "llamaindex";
-
-// src/controllers/engine/index.ts
-import {
-  ContextChatEngine,
-  serviceContextFromDefaults,
-  storageContextFromDefaults,
-  VectorStoreIndex
-} from "llamaindex";
-
-// src/controllers/engine/constants.mjs
-var STORAGE_CACHE_DIR = "./cache";
-var CHUNK_SIZE = 512;
-var CHUNK_OVERLAP = 20;
-
-// src/controllers/engine/index.ts
-function getDataSource(llm) {
+// src/data/database.ts
+import * as mongodb from "mongodb";
+var collections = {};
+function connectToDatabase(uri) {
   return __async(this, null, function* () {
-    const serviceContext = serviceContextFromDefaults({
-      llm,
-      chunkSize: CHUNK_SIZE,
-      chunkOverlap: CHUNK_OVERLAP
-    });
-    let storageContext = yield storageContextFromDefaults({
-      persistDir: `${STORAGE_CACHE_DIR}`
-    });
-    const numberOfDocs = Object.keys(
-      storageContext.docStore.toDict()
-    ).length;
-    if (numberOfDocs === 0) {
-      throw new Error(
-        `StorageContext is empty - call 'npm run generate' to generate the storage first`
-      );
-    }
-    return yield VectorStoreIndex.init({
-      storageContext,
-      serviceContext
-    });
-  });
-}
-function createChatEngine(llm) {
-  return __async(this, null, function* () {
-    const index = yield getDataSource(llm);
-    const retriever = index.asRetriever();
-    retriever.similarityTopK = 5;
-    return new ContextChatEngine({
-      chatModel: llm,
-      retriever
-    });
+    const client = new mongodb.MongoClient(uri);
+    yield client.connect();
+    const db = client.db("finai");
+    const employeesCollection = db.collection("employees");
+    collections.employees = employeesCollection;
   });
 }
 
-// src/controllers/llamaindex-stream.ts
-import {
-  createCallbacksTransformer,
-  createStreamDataTransformer,
-  trimStartOfStreamHelper
-} from "ai";
-function createParser(res) {
-  const trimStartOfStream = trimStartOfStreamHelper();
-  return new ReadableStream({
-    pull(controller) {
-      return __async(this, null, function* () {
-        const { value, done } = yield res.next();
-        if (done) {
-          controller.close();
-          return;
-        }
-        const text = trimStartOfStream(value != null ? value : "");
-        if (text) {
-          controller.enqueue(text);
-        }
-      });
-    }
-  });
-}
-function LlamaIndexStream(res, callbacks) {
-  return createParser(res).pipeThrough(createCallbacksTransformer(callbacks)).pipeThrough(
-    createStreamDataTransformer(callbacks == null ? void 0 : callbacks.experimental_streamData)
-  );
-}
-
-// src/controllers/chat.controller.ts
-var chat = (req, res, next) => __async(void 0, null, function* () {
+// src/controllers/employeeService.ts
+import { ObjectId } from "mongodb";
+var employeeService = express2.Router();
+employeeService.get("/", (req, res) => __async(void 0, null, function* () {
+  var _a;
+  console.log("employeesService / GET /api/employees/ called");
   try {
-    const { messages } = JSON.parse(req.body);
-    const lastMessage = messages.pop();
-    if (!messages || !lastMessage || lastMessage.role !== "user") {
-      return res.status(400).json({
-        error: "messages are required in the request body and the last message must be from the user"
-      });
+    const employees = yield (_a = collections.employees) == null ? void 0 : _a.find().toArray();
+    if (employees) {
+      res.json(employees);
+    } else {
+      res.status(404).send("No employees found");
     }
-    const llm = new OpenAI({
-      model: "gpt-3.5-turbo"
-    });
-    const chatEngine = yield createChatEngine(llm);
-    const response = yield chatEngine.chat(lastMessage.content, messages, true);
-    const stream = LlamaIndexStream(response);
-    streamToResponse(stream, res);
   } catch (error) {
-    console.error("[LlamaIndex]", error);
-    return res.status(500).json({
-      error: error.message
-    });
+    res.status(500).send("Error retrieving employees");
   }
-});
+}));
+employeeService.post("/", (req, res) => __async(void 0, null, function* () {
+  var _a;
+  console.log("employeesService / POST /api/employees/ called");
+  const newEmployee = req.body;
+  console.log("newEmployee", newEmployee);
+  try {
+    const result = yield (_a = collections.employees) == null ? void 0 : _a.insertOne(newEmployee);
+    if (result) {
+      res.status(201).json({ message: "Employee created successfully", employeeId: result.insertedId });
+    } else {
+      res.status(500).json({ message: "Error creating employee" });
+    }
+  } catch (error) {
+    const err = error;
+    res.status(500).json({ message: "Error creating employee", error: err.message });
+  }
+}));
+employeeService.put("/:id", (req, res) => __async(void 0, null, function* () {
+  var _a;
+  console.log("employeesService / PUT /api/employees/:id called");
+  try {
+    const updatedEmployee = req.body;
+    const id = new ObjectId(req.params.id);
+    const result = yield (_a = collections.employees) == null ? void 0 : _a.updateOne({ _id: id }, { $set: updatedEmployee });
+    if (result && result.modifiedCount > 0) {
+      res.send(updatedEmployee);
+    } else {
+      res.status(404).send("Employee not found");
+    }
+  } catch (error) {
+    const err = error;
+    res.status(500).json({ message: "Error creating employee", error: err.message });
+  }
+}));
+employeeService.delete("/:id", (req, res) => __async(void 0, null, function* () {
+  var _a;
+  console.log("employeesService / DELETE /api/employees/:id called");
+  try {
+    const id = new ObjectId(req.params.id);
+    const result = yield (_a = collections.employees) == null ? void 0 : _a.deleteOne({ _id: id });
+    if (result && result.deletedCount > 0) {
+      res.status(204).send();
+    } else {
+      res.status(404).send("Employee not found");
+    }
+  } catch (error) {
+    res.status(500).send("Error deleting employee");
+  }
+}));
+var employeeService_default = employeeService;
 
-// src/routes/chat.route.ts
-var llmRouter = express.Router();
-llmRouter.route("/").post(chat);
-var chat_route_default = llmRouter;
+// src/routes/routes.ts
+var router = express3.Router();
+router.use("/llm", llamaService_default);
+router.use("/employees", employeeService_default);
+var routes_default = router;
 
 // index.ts
-var app = express2();
-var port = 9e3;
-var env = process.env["NODE_ENV"];
-var isDevelopment = !env || env === "development";
-var prodCorsOrigin = process.env["PROD_CORS_ORIGIN"];
-if (isDevelopment) {
-  console.warn("Running in development mode - allowing CORS for all origins");
-  app.use(cors());
-} else if (prodCorsOrigin) {
-  console.log(`Running in production mode - allowing CORS for domain: ${prodCorsOrigin}`);
-  const corsOptions = {
-    origin: prodCorsOrigin
-    // Restrict to production domain
-  };
-  app.use(cors(corsOptions));
-} else {
-  console.warn("Production CORS origin not set, defaulting to no CORS.");
+import cors from "cors";
+dotenv.config();
+var { ATLAS_URI } = process.env;
+if (!ATLAS_URI) {
+  console.error(
+    "No ATLAS_URI environment variable has been defined in config.env"
+  );
+  process.exit(1);
 }
-app.use(express2.text());
-app.get("/", (req, res) => {
-  res.send("LlamaIndex Express Server");
-});
-app.use("/api/chat", chat_route_default);
-var server = app.listen(port, () => {
-  console.log(`\u26A1\uFE0F[server]: Server is running at http://localhost:${port}`);
-});
-process.on("SIGINT", () => {
-  console.log("SIGINT signal received.");
-  server.close(() => {
-    console.log("Server closed.");
-    process.exit(0);
+var app = express4();
+var port = 9e3;
+function startServer() {
+  return __async(this, null, function* () {
+    yield connectToDatabase(ATLAS_URI);
+    app.use(cors());
+    app.use(express4.json());
+    app.use("/api", routes_default);
+    app.listen(port, () => {
+      console.log(`Server is running on port ${port}`);
+    });
   });
-});
-process.on("SIGTERM", () => {
-  console.log("SIGTERM signal received.");
-  server.close(() => {
-    console.log("Server closed.");
-    process.exit(0);
-  });
-});
+}
+startServer().catch((error) => console.error(error));

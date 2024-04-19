@@ -1,3 +1,6 @@
 node_modules
 *.env
 .DS_store
+
+//ignore llm model file
+backend/models/* 
