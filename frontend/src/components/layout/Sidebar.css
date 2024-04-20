@@ -1,0 +1,312 @@
+/* Layout.css or another CSS file */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap');
+
+.fixed {
+    position: fixed;
+}
+
+.inset-y-0 {
+    top: 0;
+    bottom: 0;
+}
+
+.left-0 {
+    left: 0;
+}
+
+.bg-card {
+    background-color: #1a202c; /* Example background color */
+}
+
+.w-full {
+    width: 100%;
+}
+
+.sm\:w-20 {
+    width: 5rem;
+}
+
+.xl\:w-60 {
+    width: 15rem;
+}
+
+.sm\:flex {
+    display: flex;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.z-10 {
+    z-index: 10;
+}
+
+.flex-shrink-0 {
+    flex-shrink: 0;
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}
+
+.p-2 {
+    padding: 0.5rem;
+}
+
+.flex-grow {
+    flex-grow: 1;
+}
+
+.overflow-x-hidden {
+    overflow-x: hidden;
+}
+
+.overflow-y-auto {
+    overflow-y: auto;
+}
+
+.h-24 {
+    height: 6rem;
+}
+
+.sm\:h-20 {
+    height: 5rem;
+}
+
+.xl\:h-24 {
+    height: 6rem;
+}
+
+.hidden {
+    display: none;
+}
+
+.sm\:block {
+    display: block;
+}
+
+.xl\:block {
+    display: block;
+}
+
+.sm\:hidden {
+    display: none;
+}
+
+.xl\:hidden {
+    display: none;
+}
+
+.rounded-xl {
+    border-radius: 1.5rem;
+}
+
+.w-9 {
+    width: 2.25rem;
+}
+
+.h-9 {
+    height: 2.25rem;
+}
+
+.w-5 {
+    width: 1.25rem;
+}
+
+.h-5 {
+    height: 1.25rem;
+}
+
+.w-10 {
+    width: 2.5rem;
+}
+
+.h-10 {
+    height: 2.5rem;
+}
+
+.text-sm {
+    font-size: 0.875rem;
+}
+
+.font-bold {
+    font-weight: bold;
+}
+
+.text-gray-300 {
+    color: #d1d5db; /* Example text color */
+}
+
+.text-gray-500 {
+    color: #6b7280; /* Example text color */
+}
+
+.text-gray-400 {
+    color: #9ca3af; /* Example text color */
+}
+
+.text-xs {
+    font-size: 0.75rem;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-white {
+    color: white;
+}
+
+.block {
+    display: block;
+}
+
+.sm\:hidden {
+    display: none;
+}
+
+.xl\:hidden {
+    display: none;
+}
+
+.mt-8 {
+    margin-top: 2rem;
+}
+
+.mb-0 {
+    margin-bottom: 0;
+}
+
+.px-3 {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+}
+
+.sm\:px-0 {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.xl\:px-3 {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+}
+
+.h-28 {
+    height: 7rem;
+}
+
+.sm\:h-20 {
+    height: 5rem;
+}
+
+.xl\:h-32 {
+    height: 8rem;
+}
+
+.bg-sidebar-card-top {
+    background-color: #2d3748; /* Example background color */
+}
+
+.rounded-lg {
+    border-radius: 0.5rem;
+}
+
+.w-full {
+    width: 100%;
+}
+
+.h-full {
+    height: 100%;
+}
+
+.flex {
+    display: flex;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.justify-start {
+    justify-content: flex-start;
+}
+
+.sm\:justify-center {
+    justify-content: center;
+}
+
+.xl\:justify-start {
+    justify-content: flex-start;
+}
+
+.ml-2 {
+    margin-left: 0.5rem;
+}
+
+.ml-3 {
+    margin-left: 0.75rem;
+}
+
+.text-xl {
+    font-size: 1.25rem;
+}
+
+.bg-card{
+  background-color:#171717;
+}
+.bg-sidebar-card-top{
+  background-color: #353535;
+}
+.sidebar-separator-top{
+  border-bottom: 1px solid #2e2e2e;
+}
+.sidebar-separator-bottom{
+  border-top: 1px solid #2e2e2e;
+}
+.text-premium-yellow{
+  color: #f7b91c;
+}
+.icon-background{
+  background: #2d2d2d;
+}
+
+.tooltip-head{
+background: #1d1d1d;
+}
+.tooltip-body{
+  background:#252525 ;
+}
+
+.search-icon{
+  top: 50%;
+  transform: translate(0, -50%);
+}
+
+.card-stack-border{
+  border-bottom: 2px solid #696969;
+}
+.bg-details{
+  background-color: #1e1e1e;
+}
+
+.add-component-head{
+  background-color: #181818;
+  background-image: url("https://www.transparenttextures.com/patterns/carbon-fibre.png");
+}
+
+.sidebar-item-selected{
+  color: white;
+  border-right: 2px solid white;
+}
+.sidebar-item{
+  border-right: 2px solid transparent;
+}
+.sidebar-item:hover {
+ color:#a1a0a0;
+}

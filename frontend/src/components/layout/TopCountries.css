@@ -1,0 +1,56 @@
+/* TopCountries.css */
+
+.top-countries {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    height: 100%;
+}
+
+.top-countries-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.top-countries-header .title {
+    color: white;
+    font-weight: bold;
+}
+
+.top-countries-item {
+    display: flex;
+    align-items: center;
+    margin-top: 0.75rem;
+}
+
+.top-countries-item .icon {
+    margin-left: 0.5rem;
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+.top-countries-item .image {
+    margin-left: 0.5rem;
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.top-countries-item .name {
+    margin-left: 0.5rem;
+}
+
+.top-countries-item .value {
+    margin-left: auto;
+}
+
+.top-countries-item .options {
+    width: 0.5rem;
+    height: 0.5rem;
+    margin-left: 0.5rem;
+}
+
+.top-countries-footer {
+    display: flex;
+    justify-content: center;
+}

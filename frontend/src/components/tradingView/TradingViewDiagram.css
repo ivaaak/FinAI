@@ -12,7 +12,7 @@ html, body{
   opacity: 0.9;
   color: white;
   margin: 5% auto;
-  width: 66%;
+  width: 86%;
   height: 55%;
 }
 .crypto{
@@ -31,4 +31,11 @@ html, body{
 }
 #stockChart{
   margin-top: 2%;
+}
+
+
+.chatWindow {
+  position: relative;
+  top: 10%;
+  margin: 1rem;
 }

@@ -1,0 +1,68 @@
+/* graph.css */
+
+.flex-p-4-h-full-flex-col {
+    height: 100%;
+    flex-direction: column;
+}
+
+.flex-items-center {
+    display: flex;
+    align-items: center;
+}
+
+.font-bold-text-white {
+    font-weight: bold;
+    color: white;
+}
+
+.flex-grow {
+    flex-grow: 1;
+}
+
+.w-4-h-4 {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.ml-2 {
+    margin-left: 2rem;
+}
+
+.ml-5 {
+    margin-left: 5rem;
+}
+
+.rounded-xl-overflow-hidden-tooltip-head {
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+.flex-items-center-justify-between-p-2 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem;
+}
+
+.tooltip-body-text-center-p-3 {
+    text-align: center;
+    padding: 3rem;
+}
+
+.text-white-font-bold {
+    color: white;
+    font-weight: bold;
+}
+
+.icon-background {
+    background-color: #1a202c; /* Assuming a custom color */
+}
+
+.w-5-h-5-flex-justify-center-items-center-rounded-full {
+    width: 1.25rem;
+    height: 1.25rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 9999px;
+}

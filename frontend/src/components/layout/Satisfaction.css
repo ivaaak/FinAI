@@ -1,0 +1,37 @@
+/* Layout.css or another CSS file */
+
+.p-4 {
+    padding: 1rem;
+}
+
+.h-full {
+    height: 100%;
+}
+
+.flex {
+    display: flex;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.text-white {
+    color: white;
+}
+
+.font-bold {
+    font-weight: bold;
+}
+
+.mt-3 {
+    margin-top: 0.75rem;
+}
+
+/* .svgPath {
+    /* Add any specific styles for the animated path here 
+} */

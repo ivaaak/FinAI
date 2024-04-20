@@ -1,27 +1,26 @@
 [
-    {
-       "title": "GBP/USD",
-       "proName": "FX_IDC:GBPUSD"
-    },
-    {
-       "title": "GBP/EUR",
-       "proName": "FX_IDC:GBPEUR"
-    },
-    {
-       "title": "GBP/JPY",
-       "proName": "FX_IDC:GBPJPY"
-    },
-    {
-       "title": "FTSE",
-       "proName": "FOREXCOM:UKXGBP"
-    },
-    {
-       "title": "S&P 500",
-       "proName": "INDEX:SPX"
-    },
-    {
-       "title": "Nasdaq 100",
-       "proName": "INDEX:IUXX"
-    }
-   ]
-   
+   {
+      "title": "Apple",
+      "proName": "AAPL"
+   },
+   {
+      "title": "Google",
+      "proName": "GOOGL"
+   },
+   {
+      "title": "Microsoft",
+      "proName": "MSFT"
+   },
+   {
+      "title": "FTSE",
+      "proName": "FOREXCOM:UKXGBP"
+   },
+   {
+      "title": "S&P 500",
+      "proName": "INDEX:SPX"
+   },
+   {
+      "title": "Nasdaq 100",
+      "proName": "INDEX:IUXX"
+   }
+]

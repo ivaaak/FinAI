@@ -1,0 +1,73 @@
+/* Layout.css or another CSS file */
+
+.w-full {
+    width: 100%;
+}
+
+.p-2 {
+    padding: 0.5rem;
+}
+
+.lgw13 {
+    width: 33.333333%;
+}
+
+.rounded-lg {
+    border-radius: 0.5rem;
+}
+
+.bg-card {
+    background-color: #1a202c; /* Assuming bg-card is a custom color */
+}
+
+.flex {
+    display: flex;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.p-3 {
+    padding: 0.75rem;
+}
+
+.h-32 {
+    height: 8rem; /* Assuming h-32 is a custom height */
+}
+
+.items-center {
+    align-items: center;
+}
+
+.ml-2 {
+    margin-left: 0.5rem;
+}
+
+.mr-2 {
+    margin-right: 0.5rem;
+}
+
+.font-bold {
+    font-weight: bold;
+}
+
+.text-white {
+    color: white;
+}
+
+.text-sm {
+    font-size: 0.875rem; /* Assuming text-sm is a small text size */
+}
+
+.text-lg {
+    font-size: 1.125rem; /* Assuming text-lg is a large text size */
+}
+
+.text-green-500 {
+    color: #48BB78; /* Assuming text-green-500 is a custom color */
+}
+
+.text-red-500 {
+    color: #EF4444; /* Assuming text-red-500 is a custom color */
+}

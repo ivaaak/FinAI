@@ -1,0 +1,21 @@
+/* Icon.css */
+
+.w-4 {
+    width: 1.5rem; /* 4 * 0.25rem = 1.5rem */
+}
+
+.h-4 {
+    height: 1.5rem; /* 4 * 0.25rem = 1.5rem */
+}
+
+.w-full {
+    width: 100%;
+}
+
+.h-full {
+    height: 100%;
+}
+
+.rounded-full {
+    border-radius: 9999px;
+}

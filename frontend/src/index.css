@@ -5,7 +5,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #9c96ee;
+  background-color: #34363e;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -64,10 +64,4 @@ button:focus-visible {
   left: 0%;
   height: 7vh !important;
   width: 100%;
-}
-
-.chatWindow {
-  position: relative;
-  top: 10%;
-  margin: 1rem;
 }

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import './TradingViewDiagram.css';
+import { ChatWindow } from '../ChatWindow';
 
 interface TickerInfo {
     id: string;
@@ -106,6 +107,9 @@ const TradingViewDiagram = () => {
             </div> */}
             <div id="stockChart">
                 <div id="tv-medium-widget-5e6f9"></div>
+            </div>
+            <div className="chatWindow">
+                <ChatWindow messages={[]}></ChatWindow>
             </div>
         </div>
     );

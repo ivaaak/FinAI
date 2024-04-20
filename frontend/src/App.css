@@ -3,3 +3,14 @@
   margin: 0 auto;
   text-align: center;
 }
+
+body{
+  font-family: 'Nunito', sans-serif;
+  color:#676767;
+  background-color: #1e1e1e;
+}
+
+.tv-embed-widget-wrapper {
+  position: fixed;
+  top: 0%;
+}

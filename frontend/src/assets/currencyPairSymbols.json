@@ -1,0 +1,14 @@
+[
+    {
+        "title": "GBP/USD",
+        "proName": "FX_IDC:GBPUSD"
+    },
+    {
+        "title": "GBP/EUR",
+        "proName": "FX_IDC:GBPEUR"
+    },
+    {
+        "title": "GBP/JPY",
+        "proName": "FX_IDC:GBPJPY"
+    }
+]
