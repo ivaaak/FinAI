@@ -3,7 +3,13 @@ import path from 'path';
 import { LlamaModel, LlamaContext, LlamaChatSession } from 'node-llama-cpp';
 
 const llamaService = express.Router();
-const modelPath = path.join(process.cwd(), 'models', 'codellama-13b.Q3_K_M.gguf');
+
+// LLM Settings Here:
+const models = {
+    codellama: 'codellama-13b.Q3_K_M.gguf',
+
+}
+const modelPath = path.join(process.cwd(), 'models', models.codellama);
 
 const model = new LlamaModel({
     modelPath: modelPath

@@ -1,0 +1,22 @@
+{
+    "codellama": {
+        "name": "codellama-13b.Q3_K_M.gguf",
+        "url": "https://huggingface.co/TheBloke/CodeLlama-13B-GGUF/blob/main/codellama-13b.Q3_K_M.gguf"
+    },
+    "mistral": {
+        "name": "Mistral-7B-GGUF",
+        "url": "https://huggingface.co/TheBloke/CapybaraHermes-2.5-Mistral-7B-GGUF"
+    },
+    "financeLLM": {
+        "name": "finance-LLM-13B-GGUF",
+        "url": "https://huggingface.co/TheBloke/finance-LLM-13B-GGUF"
+    },
+    "medicineLLM": {
+        "name": "medicine-LLM-GGUF",
+        "url": "https://huggingface.co/TheBloke/medicine-LLM-GGUF"
+    },
+    "OpenGPT4": {
+        "name": "Open_Gpt4_8x7B-GGUF",
+        "url": "https://huggingface.co/TheBloke/Open_Gpt4_8x7B-GGUF"
+    }
+}

@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald');
+
+html, body{
+  height: 100%;
+  font-family: 'Oswald', sans-serif;
+  font-size: 20px;
+  background: url('http://hdwallpaperbackgrounds.net/wp-content/uploads/2017/01/Amazing-Cool-Backgrounds.jpg');
+  background-size: cover;
+}
+.container{
+  background-color: rgba(0, 0, 0, .9);
+  opacity: 0.9;
+  color: white;
+  margin: 5% auto;
+  width: 66%;
+  height: 55%;
+}
+.crypto{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.name, .price, .change, .worth{
+  flex: 1;
+}
+.positive{
+  color: green;
+}
+.negative{
+  color: red;
+}
+#stockChart{
+  margin-top: 2%;
+}
