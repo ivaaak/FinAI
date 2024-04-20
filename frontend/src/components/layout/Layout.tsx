@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Sidebar } from "./Sidebar";
-import { Content } from "./Content";
 import './Layout.css';
 
 export const Layout = () => {
@@ -13,9 +12,6 @@ export const Layout = () => {
                     onSetShowSidebar(false);
                 }}
                 showSidebar={showSidebar}
-            />
-            <Content
-                onSidebarHide={() => {onSetShowSidebar(true);}}
             />
         </div>
     );

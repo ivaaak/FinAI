@@ -7,35 +7,42 @@ html, body{
   background: url('http://hdwallpaperbackgrounds.net/wp-content/uploads/2017/01/Amazing-Cool-Backgrounds.jpg');
   background-size: cover;
 }
-.container{
-  background-color: rgba(0, 0, 0, .9);
+.container {
   opacity: 0.9;
   color: white;
-  margin: 5% auto;
-  width: 86%;
-  height: 55%;
+  margin: 1rem;
+  width: 66%;
+  height: 70%;
 }
-.crypto{
+
+.crypto {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.name, .price, .change, .worth{
+
+.name, .price, .change, .worth {
   flex: 1;
 }
-.positive{
+
+.positive {
   color: green;
 }
-.negative{
+
+.negative {
   color: red;
 }
-#stockChart{
-  margin-top: 2%;
+
+#stockChart {
+  border-radius: 10px !important;
+  position: relative;
+  left: 0%;
+  right: 20% !important;
+  height: 100%;
+  overflow: hidden;
 }
 
 
 .chatWindow {
   position: relative;
-  top: 10%;
-  margin: 1rem;
 }

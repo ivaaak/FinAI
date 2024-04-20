@@ -1,16 +1,29 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  text-align: center;
+.headerNav {
+  align-items: center;
+  justify-content: center;
 }
 
-body{
-  font-family: 'Nunito', sans-serif;
-  color:#676767;
-  background-color: #1e1e1e;
+.satisfactionWrapper {
+  width: 25%;
+  padding: 1rem;
 }
 
-.tv-embed-widget-wrapper {
-  position: fixed;
-  top: 0%;
+.segmentationWrapper {
+  width: 25%;
+  padding: 1rem;
+}
+
+.topCountriesWrapper {
+  width: 50%;
+  padding: 1rem;
+}
+
+.diagramWrapper {
+  margin: 0;
+  padding: 0;
+}
+
+.recharts-wrapper {
+  width: 20%;
+  padding: 1rem;
 }

@@ -13,7 +13,7 @@ export const TopCountries = () => {
     return (
         <div className="top-countries">
             <div className="top-countries-header">
-                <div className="title">Top Countries</div>
+                <div className="title">Top Growering Markets</div>
                 <Icon path="res-react-dash-plus" className="icon" />
             </div>
             <div>favourites</div>

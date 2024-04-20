@@ -32,23 +32,3 @@
 .mt-1 {
     margin-top: 1rem;
 }
-
-.button-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #2f49d1;
-    border-radius: 15px;
-    padding: 8px 16px;
-    color: white;
-}
-
-.button-container .ml-2 {
-    margin-left: 2rem;
-}
-
-.button-container .background-blue {
-    background: #4964ed;
-    border-radius: 15px;
-    padding: 4px 8px;
-}

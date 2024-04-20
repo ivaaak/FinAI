@@ -12,7 +12,7 @@ interface TickerInfo {
 
 const TradingViewDiagram = () => {
     const [_btc, _eth, _ltc] = [0.15000000, 0.20000000, 2.05000000];
-    const [cryptoData, setCryptoData] = useState<TickerInfo[]>([]);
+    //const [cryptoData, setCryptoData] = useState<TickerInfo[]>([]);
 
     // useEffect(() => {
     //     const fetchCryptoPrices = async () => {
@@ -108,9 +108,7 @@ const TradingViewDiagram = () => {
             <div id="stockChart">
                 <div id="tv-medium-widget-5e6f9"></div>
             </div>
-            <div className="chatWindow">
-                <ChatWindow messages={[]}></ChatWindow>
-            </div>
+
         </div>
     );
 };
