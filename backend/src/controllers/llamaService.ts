@@ -7,7 +7,6 @@ const llamaService = express.Router();
 // LLM Settings Here:
 const models = {
     codellama: 'codellama-13b.Q3_K_M.gguf',
-
 }
 const modelPath = path.join(process.cwd(), 'models', models.codellama);
 
@@ -20,7 +19,7 @@ const session = new LlamaChatSession({ context });
 // POST /api/llm
 llamaService.post('/', async (req, res) => {
     console.log("llamaService / POST /api/llm/ called");
-    const userMessage = req.body.message;
+    const userMessage = req.body.messages;
     console.log("User: " + userMessage);
 
     try {

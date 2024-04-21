@@ -31,7 +31,10 @@ import express from "express";
 import path from "path";
 import { LlamaModel, LlamaContext, LlamaChatSession } from "node-llama-cpp";
 var llamaService = express.Router();
-var modelPath = path.join(process.cwd(), "models", "codellama-13b.Q3_K_M.gguf");
+var models = {
+  codellama: "codellama-13b.Q3_K_M.gguf"
+};
+var modelPath = path.join(process.cwd(), "models", models.codellama);
 var model = new LlamaModel({
   modelPath
 });
@@ -39,7 +42,7 @@ var context = new LlamaContext({ model });
 var session = new LlamaChatSession({ context });
 llamaService.post("/", (req, res) => __async(void 0, null, function* () {
   console.log("llamaService / POST /api/llm/ called");
-  const userMessage = req.body.message;
+  const userMessage = req.body.messages;
   console.log("User: " + userMessage);
   try {
     const aiResponse = yield session.prompt(userMessage);

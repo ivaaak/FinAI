@@ -1,48 +1,41 @@
-import { Message } from "../types/chat";
+import './ChatMessage.css'
 
 interface ChatMessagesProps {
- messages: Message[];
+ messages: string[];
  currentMsg: string;
 }
 
 export const ChatMessages = ({
- messages,
- currentMsg,
-}: ChatMessagesProps): JSX.Element => {
- return (
-    <>
-      {messages?.map((message, index) => (
-        <ChatMessage message={message} key={index} />
-      ))}
-      {currentMsg && (
-        <ChatMessage message={{ content: currentMsg, system: true }} />
-      )}
-    </>
- );
-};
-
-const ChatMessage = ({ message }: { message: Message }): JSX.Element => {
- return (
-    <div
-      className={"mb-4 mt-2 rounded-md p-4"}
-    >
-      <div className="text-xs uppercase font-semibold pb-3">
-        {message.system 
-          ? <>
-              <img 
-                className="rounded-full inline mr-2" 
-                src="/llama.jpg" 
-                alt="llama profile image" 
-                height={20} 
-                width={20} 
-              />
-              LLAMA 2
-            </> 
-          : <>
-              YOU
-            </>}
-      </div>
-      {message.content}
-    </div>
- );
-};
+  messages,
+ }: ChatMessagesProps): JSX.Element => {
+  return (
+     <div className="chat-messages-container">
+       {messages?.map((message, index) => (
+         <ChatMessage message={message} key={index} />
+       ))}
+     </div>
+  );
+ };
+ 
+ const ChatMessage = ({ message }: { message: string }): JSX.Element => {
+  return (
+     <div className="chat-message">
+       {/* <div className="sender-name">
+         {message 
+           ? <>
+               <img 
+                 className="profile-image rounded-full inline mr-2" 
+                 src="/llama.jpg" 
+                 alt="llama profile image" 
+               />
+               LLAMA 2
+             </> 
+           : <>
+               YOU
+             </>}
+       </div> */}
+       <div className="message-text">{message}</div>
+     </div>
+  );
+ };
+ 

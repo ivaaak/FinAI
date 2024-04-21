@@ -39,6 +39,7 @@
 
 .items-center {
     align-items: center;
+    height: 50px;
 }
 
 .ml-2 {

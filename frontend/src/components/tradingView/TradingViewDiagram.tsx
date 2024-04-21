@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import './TradingViewDiagram.css';
-import { ChatWindow } from '../ChatWindow';
+import stockSymbols from '../../assets/stockSymbols.json';
 
 interface TickerInfo {
     id: string;
@@ -12,6 +12,8 @@ interface TickerInfo {
 
 const TradingViewDiagram = () => {
     const [_btc, _eth, _ltc] = [0.15000000, 0.20000000, 2.05000000];
+    const symbols: [string, string][] = stockSymbols.map(item => [item.title, item.proName]);
+
     //const [cryptoData, setCryptoData] = useState<TickerInfo[]>([]);
 
     // useEffect(() => {
@@ -41,20 +43,14 @@ const TradingViewDiagram = () => {
     // }, []);
 
     useEffect(() => {
+        console.log(stockSymbols)
         const script = document.createElement('script');
         script.src = 'https://s3.tradingview.com/tv.js';
         script.async = true;
         script.onload = () => {
           new window.TradingView.MediumWidget({
             container_id: 'tv-medium-widget-5e6f9',
-            symbols: [
-              ['Apple', 'AAPL '],
-              ['Google', 'GOOGL'],
-              ['Microsoft', 'MSFT'],
-              ['Bitcoin', 'COINBASE:BTCUSD|1y'],
-              ['Ethereum', 'COINBASE:ETHUSD|1y'],
-              ['Litecoin', 'COINBASE:LTCUSD|1y'],
-            ],
+            symbols: symbols,
             greyText: 'Quotes by',
             gridLineColor: '#e9e9ea',
             fontColor: '#83888D',

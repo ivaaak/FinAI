@@ -18,7 +18,6 @@ export const ChatInput = ({ addMessage }: ChatInputProps): JSX.Element => {
         }}
       />
       <Button
-        type="submit"
         onClick={() => { 
           addMessage(message); 
           setMessage("");

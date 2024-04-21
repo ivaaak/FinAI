@@ -2,7 +2,7 @@ export interface Message {
     role?: string;
     message_id?: number;
     conversation_id?: number;
-    content: string;
+    messages: string;
     system: boolean;
     timestamp?: number;
   }

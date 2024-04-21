@@ -1,26 +1,62 @@
 [
-   {
-      "title": "Apple",
-      "proName": "AAPL"
-   },
-   {
-      "title": "Google",
-      "proName": "GOOGL"
-   },
-   {
-      "title": "Microsoft",
-      "proName": "MSFT"
-   },
-   {
-      "title": "FTSE",
-      "proName": "FOREXCOM:UKXGBP"
-   },
-   {
-      "title": "S&P 500",
-      "proName": "INDEX:SPX"
-   },
-   {
-      "title": "Nasdaq 100",
-      "proName": "INDEX:IUXX"
-   }
+ {
+    "title": "Apple Inc.",
+    "proName": "AAPL"
+ },
+ {
+    "title": "Microsoft Corporation",
+    "proName": "MSFT"
+ },
+ {
+    "title": "Amazon.com Inc.",
+    "proName": "AMZN"
+ },
+ {
+    "title": "Alphabet Inc.",
+    "proName": "GOOGL"
+ },
+ {
+    "title": "Tesla, Inc.",
+    "proName": "TSLA"
+ },
+ {
+    "title": "Facebook, Inc.",
+    "proName": "FB"
+ },
+ {
+    "title": "Berkshire Hathaway Inc.",
+    "proName": "BRK.B"
+ },
+ {
+    "title": "JPMorgan Chase & Co.",
+    "proName": "JPM"
+ },
+ {
+    "title": "Visa Inc.",
+    "proName": "V"
+ },
+ {
+    "title": "Procter & Gamble Co.",
+    "proName": "PG"
+ },
+ {
+    "title": "Johnson & Johnson",
+    "proName": "JNJ"
+ },
+ {
+    "title": "Walt Disney Co.",
+    "proName": "DIS"
+ },
+ {
+    "title": "NVIDIA Corporation",
+    "proName": "NVDA"
+ },
+ {
+    "title": "Intel Corporation",
+    "proName": "INTC"
+ },
+ {
+    "title": "PayPal Holdings, Inc.",
+    "proName": "PYPL"
+ }
 ]
