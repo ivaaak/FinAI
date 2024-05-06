@@ -1,0 +1,53 @@
+[
+    {
+      "name": "Basic Price Trend Analysis",
+      "placeholders": "stock startDate endDate",
+      "prompt": "Analyze the price trend of {} from {January 1, 2023}, to {April 30, 2023}. What was the overall trend during this period?"
+    },
+    {
+      "name": "Volume Analysis",
+      "placeholders": "stock startDate endDate",
+      "prompt": "Analyze the trading volume of {} from {January 1, 2023}, to {April 30, 2023}. Identify any significant spikes or drops in volume and suggest possible reasons."
+    },
+    {
+      "name": "Price Volatility",
+      "placeholders": "stock startDate endDate",
+      "prompt": "Calculate the average daily price volatility of {} from {January 1, 2023}, to {April 30, 2023}. What factors might have contributed to this level of volatility?"
+    },
+    {
+      "name": "Performance Comparison",
+      "placeholders": "stock1 stock2 startDate endDate",
+      "prompt": "Compare the performance of {} and {} from {January 1, 2023}, to {April 30, 2023}. Which stock had a better performance and why?"
+    },
+    {
+      "name": "Market Sentiment Analysis",
+      "placeholders": "stock startDate endDate",
+      "prompt": "Analyze the market sentiment towards {} based on news articles from {January 1, 2023}, to {April 30, 2023}. What were the key factors driving the sentiment?"
+    },
+    {
+      "name": "Technical Indicators",
+      "placeholders": "stock startDate endDate",
+      "prompt": "Calculate the 50-day moving average and the 200-day moving average for {} from {January 1, 2023}, to {April 30, 2023}. What does the crossover of these moving averages suggest about the stock's future performance?"
+    },
+    {
+      "name": "Earnings Impact",
+      "placeholders": "stock",
+      "prompt": "Analyze the impact of {}'s earnings report on its stock price from the announcement date to the end of the trading day. What was the stock's price movement during this period?"
+    },
+    {
+      "name": "Sector Performance",
+      "placeholders": "stock startDate endDate stock",
+      "prompt": "Compare the performance of {} with the overall performance of the technology sector from {January 1, 2023}, to {April 30, 2023}. How does {}'s performance align with the sector's performance?"
+    },
+    {
+      "name": "Economic Indicators",
+      "placeholders": "stock startDate endDate",
+      "prompt": "Analyze the impact of recent economic indicators, such as GDP growth or unemployment rates, on {}'s stock price from {January 1, 2023}, to {April 30, 2023}. What trends can be observed?"
+    },
+    {
+      "name": "Event Impact",
+      "placeholders": "stock",
+      "prompt": "Analyze the impact of a specific event, such as a product launch or a regulatory announcement, on {}'s stock price. What was the stock's price movement before, during, and after the event?"
+    }
+  ]
+  
