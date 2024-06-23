@@ -1,26 +1,50 @@
-#  React + Express + NodeLlamaCPP Financial App (get financial  predictions based on a LLM)
-The project consists of:
+# FinAI - React / Express / NodeLlamaCPP Financial App (get financial  predictions based on a LLM)
+A Web App built with React as a Frontend and Express as a Backend. It uses [Node](https://github.com/withcatai/node-llama-cpp) [LlamaCPP](https://github.com/ggerganov/llama.cpp) as a way to run an LLM locally and get financial predictions based on data from different APIs. Data store: MongoDB. 
 
-### [Frontend: React ](https://github.com/ivaaak/FinAI/tree/main/frontend)
-  
-### [Backend: Express + MongoDB + Node LLAMA CPP LLM ](https://github.com/ivaaak/FinAI/tree/main/backend)
+### [Frontend: React (Vite + Typescript)](https://github.com/ivaaak/FinAI/tree/main/frontend)
 
-## Getting Started
+### [Backend: Express + MongoDB + Node LLAMA CPP LLM](https://github.com/ivaaak/FinAI/tree/main/backend)
 
-First, startup the backend as described in the [backend README](./backend/README.md).
 
-Second, run the development server of the frontend as described in the [frontend README](./frontend/README.md).
+### Getting Started:
+You need to setup the LLM you want to be using in the backend. The LLM should be saved as a .gguf file in the `backend/models` folder.
+- Validate LLM:  
+`npx --no node-llama-cpp chat --model PATH-TO-MODEL-DIR` 
+`npx --no node-llama-cpp chat --model c:/projects/finai/backend/models/codellama-13b.Q3_K_M.gguf`
+- Or do a test request:
+```
+curl --location 'localhost:9000/api/llm' \
+--header 'Content-Type: application/json' \
+--data '{ "messages": "Hello there" }'
+```
+- Or call the express API endpoint  `localhost:9000/api/llm`  to see the result
 
-Or run npm start in the main folder which starts both FE and BE.
+Some examples for models and formats: [LLMTypeDefinitions.json](https://github.com/ivaaak/FinAI/blob/main/backend/src/LLMTypeDefinitions.json)
 
-## Project Startup:
-```sh
-npm install
+Then you can run the below commands from the FinAI (main) directory and start the project:
+```cmd
+npm i
 npm start
 ```
--> starts both the React FE and Express API / LLM BE on ports 5173 / 3000
+This installs and starts both the FE and BE using the npm tool 'concurrently'. Or you can run the commands separately in the frontend / backend folders to have them running in separate instances/terminals.
 
-Open [http://localhost:5173](http://localhost:5173) with your browser to see the result.
+### Built With:
+-  [**✔**]  `React (Vite, Typescript)`
+-  [**✔**]  `Express API`
+- [**✔**]  `Node LlamaCPP`
+-  [**✔**]  `TradingView API / Widgets`
+-  [**✔**]  `Axios`
+-  [**✔**]  `MongoDB`
 
-### Based on the Node Llama CPP Runtime/Library:
+### Features:
+- `Free Chat / Text Inputs`
+- `Analysis Prompts` - specific prompts for analyzing financial data
+- `Price / Ticker Inputs` - a structured way of serving financial data to the LLM
+- `Data Visualisation for Stocks / Crypto` - Charts / Diagrams / Tickers with live price updates from the TradingView API
+
+#### Not implemented yet / In Progress:
+- `Auth0` Auth and User Management
+- `LLM Fine-Tuning` and general Model-related options
+
+#### Based on the Node Llama CPP Runtime/Library:
 https://github.com/withcatai/node-llama-cpp
