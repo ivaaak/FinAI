@@ -1,11 +1,13 @@
 import express from 'express';
-import llamaService from '../controllers/llamaService';
-import employeeService from '../controllers/employeeService';
+import openBBRoutes from './openBBRoutes';
+import employeeRoutes from './employeeRoutes';
+import llamaRoutes from './llamaRoutes';
 
 const router = express.Router();
 
 // Register your services
-router.use('/llm', llamaService);
-router.use('/employees', employeeService);
+router.use('/api/llm', llamaRoutes);
+router.use('/api/employees', employeeRoutes);
+router.use('/api/openbb', openBBRoutes);
 
 export default router;
