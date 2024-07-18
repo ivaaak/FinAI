@@ -1,7 +1,7 @@
 // src/controllers/EmployeeController.ts
 
 import { Request, Response } from 'express';
-import { EmployeeService } from './employeeService';
+import { EmployeeService } from '../services/employeeService';
 import { Employee } from '../data/entities/employee';
 
 export class EmployeeController {
