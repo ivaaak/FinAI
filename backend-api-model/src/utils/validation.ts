@@ -1,4 +1,4 @@
-import { Message } from "./message";
+import { Message } from "../types/message";
 
 // src/utils/validation.ts
 export const isValidBase64 = (str: string): boolean => {
