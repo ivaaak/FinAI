@@ -3,10 +3,11 @@ A Web App built with React as a Frontend and Express as a Backend. It uses [Node
 
 ### [Frontend: React (Vite + Typescript)](https://github.com/ivaaak/FinAI/tree/main/frontend)
 
-### [Backend: Express + MongoDB + Node LLAMA CPP LLM](https://github.com/ivaaak/FinAI/tree/main/backend)
+### [Backend-Local: Express + MongoDB + Node LLAMA CPP LLM](https://github.com/ivaaak/FinAI/tree/main/backend-local-model)
 
+### [Backend-API: Express + Anthropic API / SDK](https://github.com/ivaaak/FinAI/tree/main/backend-api-model)
 
-### Getting Started:
+### Getting Started (Local):
 You need to setup the LLM you want to be using in the backend. The LLM should be saved as a .gguf file in the `backend/models` folder.
 - Validate LLM:  
 `npx --no node-llama-cpp chat --model PATH-TO-MODEL-DIR` 
@@ -27,6 +28,18 @@ npm i
 npm start
 ```
 This installs and starts both the FE and BE using the npm tool 'concurrently'. Or you can run the commands separately in the frontend / backend folders to have them running in separate instances/terminals.
+
+### Getting Started (Anthropic API):
+
+Create a .env.local file in the root directory:
+```cmd
+ANTHROPIC_API_KEY=your_api_key_here
+```
+Run the development server:
+```cmd
+npm i
+npm start
+```
 
 ### Built With:
 -  [**✔**]  `React (Vite, Typescript)`
