@@ -1,99 +1,67 @@
-import { Header } from './components/layout/Header';
-import { Graph } from './components/layout/Graph';
-import { NameCard } from './components/layout/NameCard';
-import { Satisfication } from './components/layout/Satisfaction';
-import { Segmentation } from './components/layout/Segmentation';
-import { TopCountries } from './components/layout/TopCountries';
-import './App.css';
+import { useCallback, useState } from 'react';
+import { ChatPanel } from '@/components/chat/ChatPanel';
+import { Header } from '@/components/Header';
+import { ChartPanel } from '@/components/market/ChartPanel';
+import { NewsFeed } from '@/components/market/NewsFeed';
+import { TickerTape } from '@/components/market/TickerTape';
+import { Watchlist } from '@/components/market/Watchlist';
+import { findSymbol, getMarket, type MarketId, type MarketSymbol } from '@/data/markets';
+import { useLocalStorage } from '@/hooks/useLocalStorage';
+import { useTheme } from '@/hooks/useTheme';
+import type { Provider } from '@/types/chat';
 
 function App() {
-   const employeeData = [
-      {
-          id: 1,
-          name: 'Esther Howard',
-          position: "Sale's manager USA",
-          transactions: 3490,
-          rise: true,
-          tasksCompleted: 3,
-          imgId: 0,
-      },
-      {
-          id: 2,
-          name: 'Eleanor Pena',
-          position: "Sale's manager Europe",
-          transactions: 590,
-          rise: false,
-          tasksCompleted: 5,
-          imgId: 2,
-      },
-      {
-          id: 3,
-          name: 'Robert Fox',
-          position: "Sale's manager Asia",
-          transactions: 2600,
-          rise: true,
-          tasksCompleted: 1,
-          imgId: 3,
-      },
-  ];
+  const { theme, toggleTheme } = useTheme();
+  const [marketId, setMarketId] = useLocalStorage<MarketId>('finai.market', 'stocks');
+  const [selectedSymbol, setSelectedSymbol] = useLocalStorage<string>('finai.symbol', 'NASDAQ:AAPL');
+  const [provider, setProvider] = useLocalStorage<Provider>('finai.provider', 'claude');
+  const [model, setModel] = useLocalStorage<string>('finai.model', 'claude-opus-5');
+  const [draft, setDraft] = useState<{ text: string; nonce: number }>();
 
-   return (
-      <div className="h-screen p-2">
-      <div className="w-full p-2 lg:w-1/3">
-          <div className="rounded-lg bg-card overflow-hidden h-80">
-              <Header />
-          </div>
-      </div>
-      <div className="w-full p-2 lg:w-2/3">
-          <div className="flex rounded-lg bg-card sm:h-80 h-60">
-              <Graph />
-          </div>
-      </div>
+  const market = getMarket(marketId);
+  const symbol: MarketSymbol = findSymbol(selectedSymbol) ?? market.symbols[0];
 
-      <div className="flex">
-          {employeeData.map(
-              ({
-                  id,
-                  name,
-                  position,
-                  transactions,
-                  rise,
-                  tasksCompleted,
-                  imgId,
-              }) => (
-                  <NameCard
-                      key={id}
-                      id={id}
-                      name={name}
-                      position={position}
-                      transactionAmount={transactions}
-                      rise={rise}
-                      tasksCompleted={tasksCompleted}
-                      imgId={imgId}
-                  />
-              ),
-          )}
-      </div>
-      <div className="flex">
-          <div className="topCountriesWrapper">
-              <div className="rounded-lg bg-card h-80">
-                  <TopCountries />
-              </div>
-          </div>
+  const changeMarket = (id: MarketId) => {
+    setMarketId(id);
+    setSelectedSymbol(getMarket(id).symbols[0].symbol);
+  };
 
-          <div className="segmentationWrapper">
-              <div className="rounded-lg bg-card h-80">
-                  <Segmentation />
-              </div>
+  const analyzeSymbol = useCallback((s: MarketSymbol) => {
+    setDraft({
+      text: `Analyze ${s.name} (${s.short}): recent performance, key drivers, risks and what to watch next.`,
+      nonce: Date.now(),
+    });
+  }, []);
+
+  return (
+    <div className="min-h-screen">
+      <Header marketId={marketId} onMarketChange={changeMarket} theme={theme} onToggleTheme={toggleTheme} />
+      <TickerTape market={market} theme={theme} />
+
+      <main className="mx-auto grid max-w-[1600px] gap-4 p-4 lg:grid-cols-[minmax(0,1fr)_400px] xl:grid-cols-[minmax(0,1fr)_440px]">
+        <div className="min-w-0 space-y-4">
+          <ChartPanel symbol={symbol} theme={theme} onAnalyze={() => analyzeSymbol(symbol)} />
+          <div className="grid gap-4 md:grid-cols-[280px_minmax(0,1fr)]">
+            <Watchlist market={market} selected={symbol.symbol} onSelect={(s) => setSelectedSymbol(s.symbol)} />
+            <NewsFeed symbol={symbol} theme={theme} />
           </div>
-          <div className="satisfactionWrapper">
-              <div className="rounded-lg bg-card h-80">
-                  <Satisfication />
-              </div>
-          </div>
-      </div>
-  </div>
-   );
+        </div>
+
+        <ChatPanel
+          symbol={symbol}
+          provider={provider}
+          model={model}
+          onProviderChange={setProvider}
+          onModelChange={setModel}
+          draft={draft}
+        />
+      </main>
+
+      <footer className="mx-auto max-w-[1600px] px-4 pb-6 text-center text-xs text-muted-foreground">
+        Market data and charts by TradingView. AI output is for informational purposes only and is not financial advice.
+      </footer>
+    </div>
+  );
 }
 
 export default App;

@@ -1,63 +1,57 @@
-# FinAI - React / Express / NodeLlamaCPP Financial App (get financial  predictions based on a LLM)
-A Web App built with React as a Frontend and Express as a Backend. It uses [Node](https://github.com/withcatai/node-llama-cpp) [LlamaCPP](https://github.com/ggerganov/llama.cpp) as a way to run an LLM locally and get financial predictions based on data from different APIs. Data store: MongoDB. 
+# FinAI - Markets Dashboard with an AI Financial Analyst
 
-### [Frontend: React (Vite + Typescript)](https://github.com/ivaaak/FinAI/tree/main/frontend)
+A React dashboard with live TradingView charts, a ticker tape, per-symbol news, and an **AI Analyst** chat. The analyst can answer questions, analyze uploaded files (CSV, PDF statements, JSON, chart screenshots) and draw interactive charts. You can pick its provider in the UI:
 
-### [Backend-Local: Express + MongoDB + Node LLAMA CPP LLM](https://github.com/ivaaak/FinAI/tree/main/backend-local-model)
+- **Claude API**: the Anthropic SDK, with a chart-generation tool rendered in the UI, or
+- **Local Llama**: a `.gguf` model running on your machine via [node-llama-cpp](https://github.com/withcatai/node-llama-cpp).
 
-### [Backend-API: Express + Anthropic API / SDK](https://github.com/ivaaak/FinAI/tree/main/backend-api-model)
+| Folder | Stack | Port |
+| --- | --- | --- |
+| [`frontend`](frontend) | React 18, Vite, TypeScript, Tailwind CSS, Recharts, TradingView widgets | 5173 |
+| [`backend`](backend) | Express, `@anthropic-ai/sdk`, node-llama-cpp (optional), MongoDB (optional) | 3000 |
 
-### Getting Started (Local):
-You need to setup the LLM you want to be using in the backend. The LLM should be saved as a .gguf file in the `backend/models` folder.
-- Validate LLM:  
-`npx --no node-llama-cpp chat --model PATH-TO-MODEL-DIR` 
-`npx --no node-llama-cpp chat --model c:/projects/finai/backend/models/codellama-13b.Q3_K_M.gguf`
-- Or do a test request:
-```
-curl --location 'localhost:9000/api/llm' \
---header 'Content-Type: application/json' \
---data '{ "messages": "Hello there" }'
-```
-- Or call the express API endpoint  `localhost:9000/api/llm`  to see the result
+One backend serves both providers: `/api/finance` for Claude and `/api/llm` for the local model. In development, Vite proxies `/api/*` to it, so no CORS setup is needed.
 
-Some examples for models and formats: [LLMTypeDefinitions.json](https://github.com/ivaaak/FinAI/blob/main/backend/src/LLMTypeDefinitions.json)
+## Getting started
 
-Then you can run the below commands from the FinAI (main) directory and start the project:
-```cmd
-npm i
-npm start
-```
-This installs and starts both the FE and BE using the npm tool 'concurrently'. Or you can run the commands separately in the frontend / backend folders to have them running in separate instances/terminals.
+1. Create `backend/.env.local` (see [`backend/.env.example`](backend/.env.example)):
+   ```
+   ANTHROPIC_API_KEY=your_api_key_here
+   ```
+2. Install and run the backend + frontend from the repo root:
+   ```bash
+   npm run setup
+   npm start
+   ```
+3. Open http://localhost:5173.
 
-### Getting Started (Anthropic API):
+### Optional: local model
 
-Create a .env.local file in the root directory:
-```cmd
-ANTHROPIC_API_KEY=your_api_key_here
-```
-Run the development server:
-```cmd
-npm i
-npm start
-```
+1. Download a `.gguf` model into `backend/models/` (see [LLMTypeDefinitions.json](backend/docs/LLMTypeDefinitions.json) for examples). Set `LLM_MODEL` in `backend/.env.local` if it isn't `codellama-13b.Q3_K_M.gguf`.
+2. Validate it:
+   ```bash
+   npx --no node-llama-cpp chat --model backend/models/codellama-13b.Q3_K_M.gguf
+   ```
+3. In the AI Analyst panel, switch **Provider** to *Local Llama*. The model loads on the first message, which can take a minute.
 
-### Built With:
--  [**✔**]  `React (Vite, Typescript)`
--  [**✔**]  `Express API`
-- [**✔**]  `Node LlamaCPP`
--  [**✔**]  `TradingView API / Widgets`
--  [**✔**]  `Axios`
--  [**✔**]  `MongoDB`
+## Scripts (repo root)
 
-### Features:
-- `Free Chat / Text Inputs`
-- `Analysis Prompts` - specific prompts for analyzing financial data
-- `Price / Ticker Inputs` - a structured way of serving financial data to the LLM
-- `Data Visualisation for Stocks / Crypto` - Charts / Diagrams / Tickers with live price updates from the TradingView API
+| Script | What it does |
+| --- | --- |
+| `npm run setup` | Install dependencies for the root, backend and frontend |
+| `npm start` | Backend + frontend in watch mode |
+| `npm run build` | Production builds |
+| `npm test` | Typecheck and lint both projects |
 
-#### Not implemented yet / In Progress:
-- `Auth0` Auth and User Management
-- `LLM Fine-Tuning` and general Model-related options
+## Features
 
-#### Based on the Node Llama CPP Runtime/Library:
-https://github.com/withcatai/node-llama-cpp
+- **Markets**: stocks, indexes, forex and crypto, with a filterable watchlist, TradingView advanced chart (1H/1D/1W/1M), ticker tape and symbol news.
+- **AI Analyst**: suggested analysis prompts for the selected symbol, an "Analyze" shortcut, Markdown answers, file attachments (drag & drop), cancel/stop, and conversation history saved in the browser.
+- **AI-generated charts**: bar, multi-bar, line, area, stacked area and pie charts, each with a data-table view.
+- **Model choice**: Claude Opus 5 (default), Sonnet 5 or Haiku 4.5, or a local Llama model.
+- **Light and dark themes**.
+
+#### Not implemented yet / in progress
+- `Auth0` auth and user management
+- LLM fine-tuning and model-related options for the local model
+- Live price data passed to the model (the analyst currently only knows what's in the conversation or attached files)

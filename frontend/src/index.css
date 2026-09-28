@@ -1,68 +1,167 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #34363e;
+@layer base {
+  :root {
+    --background: 220 20% 97%;
+    --foreground: 222 30% 12%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 30% 12%;
+    --primary: 221 83% 53%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 16% 93%;
+    --secondary-foreground: 222 30% 16%;
+    --muted: 220 16% 94%;
+    --muted-foreground: 220 9% 44%;
+    --accent: 220 16% 92%;
+    --accent-foreground: 222 30% 12%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 14% 88%;
+    --input: 220 14% 85%;
+    --ring: 221 83% 53%;
+    --positive: 152 60% 36%;
+    --negative: 0 70% 50%;
+    --radius: 0.75rem;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    --chart-1: 221 83% 53%;
+    --chart-2: 160 60% 40%;
+    --chart-3: 32 95% 50%;
+    --chart-4: 280 65% 55%;
+    --chart-5: 346 77% 52%;
+
+    color-scheme: light;
+  }
+
+  .dark {
+    --background: 224 24% 7%;
+    --foreground: 220 20% 94%;
+    --card: 224 22% 10%;
+    --card-foreground: 220 20% 94%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 224 30% 8%;
+    --secondary: 223 18% 16%;
+    --secondary-foreground: 220 20% 94%;
+    --muted: 223 18% 14%;
+    --muted-foreground: 220 10% 62%;
+    --accent: 223 18% 17%;
+    --accent-foreground: 220 20% 94%;
+    --destructive: 0 72% 55%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 223 16% 18%;
+    --input: 223 16% 22%;
+    --ring: 217 91% 60%;
+    --positive: 152 55% 48%;
+    --negative: 0 75% 62%;
+
+    --chart-1: 217 91% 62%;
+    --chart-2: 160 70% 38%;
+    --chart-3: 28 85% 45%;
+    --chart-4: 275 60% 60%;
+    --chart-5: 346 80% 64%;
+
+    color-scheme: dark;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html,
+  body,
+  #root {
+    @apply min-h-screen;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: 'cv11', 'ss01';
+  }
+
+  ::selection {
+    @apply bg-primary/25;
+  }
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+@layer components {
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--border)) transparent;
+  }
+
+  /* Markdown rendered inside assistant chat messages */
+  .chat-markdown {
+    @apply text-sm leading-relaxed;
+  }
+  .chat-markdown > * + * {
+    @apply mt-3;
+  }
+  .chat-markdown h1,
+  .chat-markdown h2,
+  .chat-markdown h3,
+  .chat-markdown h4 {
+    @apply font-semibold tracking-tight;
+  }
+  .chat-markdown h1 {
+    @apply text-lg;
+  }
+  .chat-markdown h2 {
+    @apply text-base;
+  }
+  .chat-markdown h3,
+  .chat-markdown h4 {
+    @apply text-sm;
+  }
+  .chat-markdown ul {
+    @apply list-disc space-y-1 pl-5;
+  }
+  .chat-markdown ol {
+    @apply list-decimal space-y-1 pl-5;
+  }
+  .chat-markdown a {
+    @apply text-primary underline underline-offset-2;
+  }
+  .chat-markdown strong {
+    @apply font-semibold;
+  }
+  .chat-markdown code {
+    @apply rounded bg-muted px-1 py-0.5 font-mono text-[0.85em];
+  }
+  .chat-markdown pre {
+    @apply overflow-x-auto rounded-lg bg-muted p-3 text-xs;
+  }
+  .chat-markdown pre code {
+    @apply bg-transparent p-0;
+  }
+  .chat-markdown blockquote {
+    @apply border-l-2 border-primary/50 pl-3 text-muted-foreground;
+  }
+  .chat-markdown table {
+    @apply block w-full overflow-x-auto text-xs;
+    border-collapse: collapse;
+  }
+  .chat-markdown th,
+  .chat-markdown td {
+    @apply border border-border px-2 py-1 text-left;
+  }
+  .chat-markdown th {
+    @apply bg-muted font-semibold;
+  }
+  .chat-markdown hr {
+    @apply border-border;
+  }
 }
 
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-iframe {
-  top:10%;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  margin: 0em 1em 0em 0em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #000000;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
+/* TradingView embeds size themselves to their container */
+.tradingview-widget-container,
 .tradingview-widget-container__widget {
-  position: relative !important;
-  top: 10% !important;
-  padding: 10px 23px;
-  height: 10px;
+  width: 100%;
+  height: 100%;
 }
 
-#tradingview-widget-container {
-  position: relative;
-  left: 0%;
-  height: 75 !important;
-  width: 100%;
+/* Transparent TradingView iframes render an opaque white canvas when the page's
+   color-scheme (dark) differs from the iframe document's; match the iframe's default. */
+.tradingview-widget-container iframe {
+  color-scheme: light;
 }

@@ -1,23 +1,16 @@
 {
   "name": "finai",
-  "version": "2.0.0",
-  "main": "index.js",
+  "version": "2.1.0",
+  "private": true,
+  "description": "Markets dashboard with an AI financial analyst (Claude API or a local Llama model)",
   "scripts": {
-    "start": "npm run prepare && concurrently \"npm run start:backend\" \"npm run start:frontend\"",
-    "start:backend": "cd backend && npm start",
-    "start:frontend": "cd frontend && npm run dev",
-    "prepare": "concurrently \"npm run prepare:backend\" \"npm run prepare:frontend\"",
-    "prepare:backend": "cd backend && npm install",
-    "prepare:frontend": "cd frontend && npm install",
-    "build": "npm run prepare && concurrently \"npm run build:backend\" \"npm run build:frontend\"",
-    "build:backend": "cd backend && npm run build",
-    "build:frontend": "cd frontend && npm run build",
-    "test": "npm run prepare && concurrently \"npm run test:frontend\" \"npm run test:backend\"",
-    "test:frontend": "cd frontend && npm test",
-    "test:backend": "cd backend && npm test"
+    "setup": "npm install && npm --prefix backend install && npm --prefix frontend install",
+    "start": "concurrently -k -n api,web -c blue,green \"npm --prefix backend run dev\" \"npm --prefix frontend run dev\"",
+    "build": "npm --prefix backend run build && npm --prefix frontend run build",
+    "test": "npm --prefix backend test && npm --prefix frontend test"
   },
-  "license": "Apache 2.0",
+  "license": "Apache-2.0",
   "devDependencies": {
-    "concurrently": "^7.1.0"
+    "concurrently": "^9.1.0"
   }
 }
