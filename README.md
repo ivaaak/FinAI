@@ -12,6 +12,17 @@ A React dashboard with live TradingView charts, a ticker tape, per-symbol news, 
 
 One backend serves both providers: `/api/finance` for Claude and `/api/llm` for the local model. In development, Vite proxies `/api/*` to it, so no CORS setup is needed.
 
+## Screenshots
+
+<img src="frontend/screenshots/1.png" width="80%" alt="Main stock view" />
+
+<img src="frontend/screenshots/2.png" width="80%" alt="Main view - newsfeed" />
+
+<img src="frontend/screenshots/3.png" width="80%" alt="Forex view" />
+
+<img src="frontend/screenshots/4.png" width="80%" alt="Light theme" />
+
+
 ## Getting started
 
 1. Create `backend/.env.local` (see [`backend/.env.example`](backend/.env.example)):
