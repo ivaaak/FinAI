@@ -1,7 +1,11 @@
 node_modules
-*.env
-.DS_store
+dist
+.DS_Store
 
-//ignore llm model file
-backend/models/* 
-backend-local-model/models/* 
+# Environment files (keep the .env.example templates)
+.env
+.env.*
+!.env.example
+
+# Local LLM model files
+backend/models/*
